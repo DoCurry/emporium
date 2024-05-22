@@ -15,6 +15,7 @@ import controller.DatabaseController;
 @WebServlet("/AdminHome")
 public class AdminHome extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
 	DatabaseController dbc=new DatabaseController();
        
     /**

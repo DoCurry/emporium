@@ -41,41 +41,43 @@ public class Authentication implements Filter {
 	        return;
 	    }
 
-	    // Separate flags for login, login/logout servlets, and register page/servlet for better readability
+	 // Check if the current request is for login
 	    boolean isLogin = uri.endsWith(StringUtils.PAGE_URL_LOGIN);
 	    boolean isLoginServlet = uri.endsWith(StringUtils.SERVLET_URL_LOGIN);
 
+	    // Check if the current request is for registration
 	    boolean isRegisterPage = uri.endsWith(StringUtils.PAGE_URL_REGISTER);
 	    boolean isRegisterServlet = uri.endsWith(StringUtils.SERVLET_URL_REGISTER);
-	    
+
+	    // Check if the current request is for logout
 	    boolean isLogoutServlet = uri.endsWith(StringUtils.SERVLET_URL_LOGOUT);
 
-	    // Check if a session exists and if the username attribute is set to determine login status
-	    HttpSession session = req.getSession(false); // Don't create a new session if one doesn't exist
-	    boolean isLoggedIn = session != null && session.getAttribute(StringUtils.USERNAME) != null;
+	    // Retrieve the session
+	    HttpSession session = req.getSession(false);
+	    boolean isLoggedIn = session != null && session.getAttribute(StringUtils.USERNAME) != null; // Check if the user is logged in
 
-	    System.out.println("logged in? ="+isLoggedIn);
-	    
-	    // Redirect to login if user is not logged in and trying to access a protected resource
-	    if (!isLoggedIn && !(isLogin || isLoginServlet || isRegisterPage || isRegisterServlet)) {
-	        res.sendRedirect(req.getContextPath() + StringUtils.SERVLET_URL_LOGIN);
-	    } else if (isLoggedIn && !(isLogoutServlet)) { 
-	    	String role = session.getAttribute(StringUtils.ROLE).toString();
-	    	
-	    	System.out.println("role="+role);
-	    	
-	    	if (role.equals("admin") && (uri.contains("pages/admin/")||(uri.contains("/Admin")))) {// Redirect logged-in users to the index page if trying to access login page again
-	    		chain.doFilter(req, res);
-	    	} else if (role.equals("user") && (uri.contains("pages/user/")||(uri.contains("/User")))){
-	    		chain.doFilter(request, response);
-	    	}
-	    	else {
-	    		res.sendRedirect(req.getContextPath()+"/pages/error.jsp");
-	    	}
+	    System.out.println("logged in? =" + isLoggedIn); // Output whether the user is logged in
+
+	    // Handle different scenarios based on user's login status and requested URLs
+	    // False && !(FALSE||
+	    if (!isLoggedIn && !(isLogin || isLoginServlet || isRegisterPage || isRegisterServlet)) { // If user is not logged in and not accessing login/register pages or servlets
+	        res.sendRedirect(req.getContextPath() + StringUtils.SERVLET_URL_LOGIN); // Redirect to login page
+	    } else if (isLoggedIn && !(isLogoutServlet)) { // If user is logged in and not accessing logout servlet
+	        String role = session.getAttribute(StringUtils.ROLE).toString(); // Get user's role
+	        
+	        System.out.println("role=" + role); // Output user's role
+	        
+	        if (role.equals("admin") && (uri.contains("pages/admin/") || (uri.contains("/Admin")))) { // If user is admin and accessing admin pages
+	            chain.doFilter(req, res); // Allow access
+	        } else if (role.equals("user") && (uri.contains("pages/user/") || (uri.contains("/User")))) { // If user is regular user and accessing user pages
+	            chain.doFilter(request, response); // Allow access
+	        } else { // If user is trying to access unauthorized pages
+	            res.sendRedirect(req.getContextPath() + "/pages/error.jsp"); // Redirect to error page
+	        }
 	    } else {
-	        chain.doFilter(request, response);
+	        chain.doFilter(request, response); // Allow access for all other cases
 	    }
-	    }
+	}
 
 
 	@Override

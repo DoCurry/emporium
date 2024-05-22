@@ -62,9 +62,6 @@ public class StringUtils {
 	public static final String ROLE = "role";
 	public static final String RETYPE_PASSWORD = "re-password";
 
-	public static final String GET_ALL_STUDENT_INFO = "SELECT * from student_info";
-	public static final String GET_LOGIN_STUDENT_INFO = "SELECT * from student_info WHERE user_name = ? AND password = ?";
-
 	// Register Page Messages
 	public static final String MESSAGE_SUCCESS_REGISTER = "Successfully Registered!";
 	public static final String MESSAGE_ERROR_REGISTER = "Please re-check the form data.";

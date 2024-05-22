@@ -13,8 +13,8 @@ import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
 import controller.DatabaseController;
-import model.PasswordEncryptionWithAes;
 import model.UserModel;
+import util.PasswordEncryptionWithAes;
 import util.StringUtils;
 
 /**

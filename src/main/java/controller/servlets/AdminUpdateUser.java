@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
 import controller.DatabaseController;
-import model.PasswordEncryptionWithAes;
 import model.UserModel;
+import util.PasswordEncryptionWithAes;
 import util.StringUtils;
 
 /**

@@ -1,4 +1,4 @@
-package model;
+package util;
 
 import java.nio.ByteBuffer;
 import java.nio.charset.Charset;

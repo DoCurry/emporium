@@ -3,6 +3,10 @@ package model;
 import java.util.ArrayList;
 
 public class CartModel extends UserModel{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int cartID;
 	private ArrayList<CartItem> item;
 

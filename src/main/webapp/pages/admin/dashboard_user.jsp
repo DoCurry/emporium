@@ -54,7 +54,7 @@ String contextPath = request.getContextPath();
 				</form>
 			</div>
 			<div class="product-list">
-				<h2 class="product-list-title">List of Products</h2>
+				<h2 class="product-list-title">List of Users</h2>
 				<div class="actual-list">
 					<c:forEach var="user" items="${users}">
 						<div class="product-item">
