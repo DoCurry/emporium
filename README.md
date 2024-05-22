@@ -1,0 +1,1 @@
+This is a college project (an e-commerce tech website) and contains a lot of bugs as it was rushed in a very limited time. Made with very basic java backend integrated with mySQL and HTML, CSS and JS in frontend.
