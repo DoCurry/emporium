@@ -428,6 +428,18 @@ public class DatabaseController {
 	        return products; // Return empty list in case of exception
 	    }
 	}
+	
+	public ProductModel getDummyProduct() {
+		ProductModel product = new ProductModel();
+        product.setProductID(0);
+        product.setName("No Product Found");
+        product.setPrice(0);
+        product.setDescription("No Product Found");
+        product.setCategory("No Product Found");
+        product.setStock(0);
+        product.setImagePath("No Product Found");
+        return product;
+	}
 
 
 	// Method to retrieve information of a specific product by its ID
