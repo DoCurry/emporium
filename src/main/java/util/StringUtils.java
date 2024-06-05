@@ -46,7 +46,7 @@ public class StringUtils {
 	public static final String QUERY_DELETE_CART = "DELETE FROM cart WHERE userID=?";
 	public static final String QUERY_DELETE_CART_ITEM="DELETE FROM cart_items WHERE itemID=?";
 	// IMAGE URL
-	public static final String IMAGE_ROOT = "D:\\eclipse\\preference\\Emporium\\E Emporium\\src\\main\\webapp\\resource\\";
+	public static final String IMAGE_ROOT = "D:\\eclipse\\preference\\emporium repo\\E Emporium\\src\\main\\webapp\\resource\\";
 	public static final String IMAGE_PRODUCT_PATH = IMAGE_ROOT + "products\\";
 	public static final String IMAGE_USER_PATH = IMAGE_ROOT + "user\\";
 
